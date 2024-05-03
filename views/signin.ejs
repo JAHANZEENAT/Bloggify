@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs') %>
+    <title>Signin</title>
+</head>
+<body class="mt-5">
+    <% if (locals.error) { %>
+        <div class="container" class="mt-5">
+          <div class="alert alert-danger" role="alert">
+         <%= locals.error %>
+          </div>
+        </div>
+      <% } %>
+    <div class="container" >
+        <form action="/signin" method="POST">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input type="email" name="email" class="form-control" id="email" aria-describedby="email">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" name="password" class="form-control" id="password">
+            </div>
+           
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+    <%- include('./partials/scripts.ejs') %>
+</body>
+</html>

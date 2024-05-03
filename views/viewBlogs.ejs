@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs') %>
+    <title>My Blogs</title>
+</head>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <div class="container">
+        <h1><%= readblog.title %></h1>
+        <img src="<%= readblog.coverImg %>" width="700px"/>
+        <pre style="white-space: pre-wrap;word-break: break-word;" class="mt-3"><%= readblog.body %></pre>
+    </div>
+    <div class="container">
+        <img src="<%= img%>" width="50px"><%= user %>
+    </div>
+    <h3  style="margin-left: 5rem;">Comment (<%= comments.length %>)</h3>
+    <% if (locals.user) { %>
+        <div class="container" class="mt-5">
+            <form action="/comment/<%= readblog._id %>" method="post">
+                <div class="mb-3">
+                    <input type="text" name="comment" placeholder="Please Enter your comment"
+                    maxlength="40" size="25"><br>
+                    <div class="mt-2">
+                        <button type="submit" class="btn btn-sm btn-primary">Add</button>
+                    </div>
+                    
+                </div>      
+        </form>
+    </div>
+    <% } %>
+        <div class="mt-5" style="margin-left: 5rem;">
+            <% comments.forEach(comment => { %>
+             <div>
+                <img src="<%= comment.createdBy.profileImg %>" width="50px"/><%=
+                    comment.createdBy.fullname  %>
+                    <pre><%= comment.content %></pre>
+             </div>
+
+            <% }) %>
+        </div>
+   
+    <%- include('./partials/scripts.ejs') %>
+</body>
+</html>
